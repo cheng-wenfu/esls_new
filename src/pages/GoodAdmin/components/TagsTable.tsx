@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table } from 'antd';
+import { Table, Button, Card } from 'antd';
 import { Dispatch } from 'umi';
 
 import { TagDataItem } from '@/models/tagData';
@@ -10,15 +10,26 @@ interface TagsTableProps {
 }
 
 const TagsTable: React.FC<TagsTableProps> = ({ tagsData, dispatch }) => {
-  //const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(1);
+
+  const handleRefresh = () => {
+    dispatch({
+      type: 'tags/getTagsData',
+      payload: {
+        page: current - 1
+      },
+    });
+  }
   const pagination = {
     total: 200,
-    //current: current,
+    current: current,
     onChange: (page: number) => {
-      //setCurrent(page);
+      setCurrent(page);
       dispatch({
-        type: 'goodManage/fetchTagsData',
-        payload: page - 1,
+        type: 'tags/getTagsData',
+        payload: {
+          page: page - 1,
+        },
       });
     },
   };
@@ -68,20 +79,24 @@ const TagsTable: React.FC<TagsTableProps> = ({ tagsData, dispatch }) => {
       dataIndex: 'waitUpdate',
       key: 'waitUpdate',
     },
-    // {
-    //     title: '操作',
-    //     dataIndex: 'name',
-    //     key: 'name',
-    // },
+    {
+        title: '操作',
+        dataIndex: 'name',
+        key: 'name',
+    },
   ];
   return (
-    <Table
-      rowKey="id"
-      dataSource={tagsData}
-      columns={colums}
-      pagination={pagination}
-      title={() => '标签数据管理'}
-    />
+    <Card
+      title="标签数据管理"
+      extra={<Button type="primary" onClick={handleRefresh}>刷新</Button>}
+    >
+      <Table
+        rowKey="id"
+        dataSource={tagsData}
+        columns={colums}
+        pagination={pagination}
+      />
+    </Card>
   );
 };
 
