@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Table, Button, Modal } from 'antd';
+import { Table, Button, Modal, Card } from 'antd';
 import { Dispatch } from 'umi';
 
 import AddGoodsForm from './AddGoodsFrom';
 
-import { GoodDataItem}   from '@/models/goodData'
+import { GoodDataItem } from '@/models/goodData'
 //import styles from './GoodsTable.less';
 
 interface GoodsTableProps {
@@ -18,8 +18,10 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
 
   const handleRefresh = () => {
     dispatch({
-      type: 'goodManage/fetchGoodsData',
-      payload: current - 1,
+      type: 'goods/getGoodsData',
+      payload: {
+        page: current - 1
+      },
     });
   }
 
@@ -40,8 +42,10 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
     onChange: (page: number) => {
       setCurrent(page);
       dispatch({
-        type: 'goodManage/fetchGoodsData',
-        payload: page - 1,
+        type: 'goods/getGoodsData',
+        payload: {
+          page: page -1
+        }
       });
     },
   };
@@ -101,27 +105,31 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
   // TODO:用Card 包装 Table extra 装右上角Button
   return (
     <div>
-      <div className="tableOperations">
-        <Button onClick={handleRefresh}>刷新</Button>
-        <Button>筛选预警商品</Button>
-        <Button onClick={showModal}>添加商品</Button>
-        <Modal
-          title="添加商品"
-          visible={visible}
-          onOk={handleModalOk}
-          onCancel={handleModalCancel}
-          width={900}
-        >
-          <AddGoodsForm />
-        </Modal>
-      </div>
-      <Table
-        rowKey="id"
-        dataSource={goodsData}
-        columns={colums}
-        pagination={pagination}
-        title={() => '商品数据管理'}
-      />
+      <Card
+        title="商品数据管理"
+        extra={
+          <div className="buttonContainer">
+            <Button  type="primary"  onClick={handleRefresh}>刷新</Button>
+            <Button type="primary" >筛选预警商品</Button>
+            <Button  type="primary" onClick={showModal}>添加商品</Button>
+          </div>
+        }>
+        <Table
+          rowKey="id"
+          dataSource={goodsData}
+          columns={colums}
+          pagination={pagination}
+        />
+      </Card>
+      <Modal
+        title="添加商品"
+        visible={visible}
+        onOk={handleModalOk}
+        onCancel={handleModalCancel}
+        width={900}
+      >
+        <AddGoodsForm />
+      </Modal>
     </div>
   );
 };
