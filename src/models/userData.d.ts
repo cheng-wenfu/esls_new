@@ -1,18 +1,18 @@
 //商品首页统计数据
 export interface HomeStatisticData {
-  goodSize?: number;   //商品数量
-  tagSize?: number;    //价签数量
-  routerSize?: number;  //路由器数量
-  styleSzie?: number;   //样式数量
-  shopSize?: number;    //店铺数量
-  userSize?: number;    //用户数量
-  normalTagSize?: number;
-  noBindTagSize?: number;
-  noIsWorkingTagSize?: number;
-  forbiddenTagSize?: number;
-  normalRouterSize?: number;
-  forbiddenRouterSize?: number;
-  noIsWorkingRouterSize?: number;
+  goodSize: number;   //商品数量
+  tagSize: number;    //价签数量
+  routerSize: number;  //路由器数量
+  styleSzie: number;   //样式数量
+  shopSize: number;    //店铺数量
+  userSize: number;    //用户数量
+  normalTagSize: number;
+  noBindTagSize: number;
+  noIsWorkingTagSize: number;
+  forbiddenTagSize: number;
+  normalRouterSize: number;
+  forbiddenRouterSize: number;
+  noIsWorkingRouterSize: number;
 }
 
 //用户操作数据条
