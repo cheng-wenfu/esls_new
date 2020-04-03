@@ -5,7 +5,6 @@ import { Dispatch } from 'umi';
 import AddGoodsForm from './AddGoodsFrom';
 
 import { GoodDataItem } from '@/models/goodData'
-//import styles from './GoodsTable.less';
 
 interface GoodsTableProps {
   goodsData: Array<GoodDataItem> | undefined;
