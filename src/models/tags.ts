@@ -1,12 +1,13 @@
 import { Effect, Reducer } from 'umi';
 
-import { TagDataItem } from './tagData';
+import { TagDataItem, TagStatisticData } from './tagData';
 
-import { getTagsData } from '@/services/tags';
+import { getTagsData, getTagStatisticData, getOvertimeTagsData } from '@/services/tags';
 
 
 export interface TagsModelState {
   tagsData?: Array<TagDataItem>;
+  tagStatisticData?: TagStatisticData;
 }
 
 interface TagsModelType {
@@ -14,10 +15,12 @@ interface TagsModelType {
   state: TagsModelState;
   effects: {
     getTagsData: Effect;
-    //getGoodIdData: Effect;
+    getTagStatisticData: Effect;
+    getOvertimeTagsData: Effect;
   }
   reducers: {
     saveTagsData: Reducer<TagsModelState>;
+    saveTagStatisticData: Reducer<TagsModelState>;
   }
 }
 
@@ -45,6 +48,22 @@ const Model: TagsModelType = {
         payload: response,
       })
     },
+
+    *getTagStatisticData(_, { call, put }) {
+      const response = yield call(getTagStatisticData);
+      yield put({
+        type: 'saveTagStatisticData',
+        payload: response,
+      })
+    },
+
+    *getOvertimeTagsData({ payload }, { call, put }) {
+      const response = yield call(getOvertimeTagsData, payload);
+      yield put({
+        type: 'saveTagsData',
+        payload: response,
+      })
+    }
   },
 
   reducers: {
@@ -52,6 +71,12 @@ const Model: TagsModelType = {
       return {
         ...state,
         tagsData: payload.data,
+      }
+    },
+    saveTagStatisticData(state, { payload }) {
+      return {
+        ...state,
+        tagStatisticData: payload.data,
       }
     }
   }
