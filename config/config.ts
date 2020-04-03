@@ -97,6 +97,12 @@ export default defineConfig({
               component: './GoodAdmin'
             },
             {
+              name: 'changePrice',
+              icon: 'table',
+              path: '/chagePrice',
+              component: './ChangePrice'
+            },
+            {
               component: './404',
             },
           ],
