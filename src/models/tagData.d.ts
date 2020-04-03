@@ -31,5 +31,12 @@ export interface TagDataItem {
   styleIsPromote?: number;
   styles?: [{}];
   style?: {};
+}
 
+export interface TagStatisticData {
+  overTimeTagSize: number;
+  allSize: number;
+  forbidTagSize: number;
+  waitUpdateTagSize: number;
+  normalTagSize: number;
 }
