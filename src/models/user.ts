@@ -20,8 +20,8 @@ export interface CurrentUser {
 }
 
 export interface UserModelState {
+  homeStatisticData?: HomeStatisticData,
   currentUser?: CurrentUser;
-  homeStatisticData?: HomeStatisticData,  //
   userOperationLogs?: UserOperationLogItem[],
 }
 
@@ -47,7 +47,21 @@ const UserModel: UserModelType = {
 
   state: {
     currentUser: {},
-    homeStatisticData: {},
+    homeStatisticData: {
+      goodSize: 0,
+      tagSize: 0,
+      routerSize: 0,
+      styleSzie: 0,
+      shopSize: 0,
+      userSize: 0,
+      normalTagSize: 0,
+      noBindTagSize: 0,
+      noIsWorkingTagSize: 0,
+      forbiddenTagSize: 0,
+      normalRouterSize: 0,
+      forbiddenRouterSize: 0,
+      noIsWorkingRouterSize: 0,
+    },
     userOperationLogs: [{}]
   },
 
