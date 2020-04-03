@@ -23,18 +23,18 @@ const GoodAdmin: React.FC<GoodAdminProps> = (props) => {
       payload: {
         page: 0,
       }
-    }),
-      dispatch({
-        type: 'tags/getTagsData',
-        payload: {
-          page: 0,
-        }
-      })
+    });
+    dispatch({
+      type: 'tags/getTagsData',
+      payload: {
+        page: 0,
+      }
+    })
   }, [])
 
   return (
     <PageHeaderWrapper>
-      <Row gutter={8}>
+      <Row gutter={[8, 24]}>
         <GoodsTable goodsData={goods.goodsData} dispatch={dispatch} />
       </Row>
       <Row gutter={8}>
