@@ -38,7 +38,7 @@ const Model: LoginModelType = {
         payload: response,
       });
       // Login successfully
-      // TODO: 自己的柜子
+      // TODO: 自己的规则
       // 原先规则：if (response.status === 'ok')
       if (response.code === 1) {
         const urlParams = new URL(window.location.href);
