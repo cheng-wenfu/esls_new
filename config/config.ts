@@ -103,6 +103,12 @@ export default defineConfig({
               component: './ChangePrice'
             },
             {
+              name: 'tagManage',
+              icon: 'table',
+              path: '/tagManage',
+              component: './TagManage',
+            },
+            {
               component: './404',
             },
           ],
