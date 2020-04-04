@@ -48,7 +48,7 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
       });
     },
   };
-  const colums = [
+  const columns = [
     {
       title: '商品名称',
       dataIndex: 'name',
@@ -101,7 +101,6 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
     },
   ];
 
-  // TODO:用Card 包装 Table extra 装右上角Button
   return (
     <div>
       <Card
@@ -116,7 +115,7 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
         <Table
           rowKey="id"
           dataSource={goodsData}
-          columns={colums}
+          columns={columns}
           pagination={pagination}
         />
       </Card>
