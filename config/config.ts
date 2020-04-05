@@ -109,6 +109,18 @@ export default defineConfig({
               component: './TagManage',
             },
             {
+              name: 'styleMange',
+              icon: 'table',
+              path: '/styleManage',
+              component: './StyleManage',
+            },
+            {
+              name: 'shopAdmin',
+              icon: 'table',
+              path: '/ShopAdmin',
+              component: './ShopAdmin'
+            },
+            {
               component: './404',
             },
           ],
