@@ -5,12 +5,12 @@ import styles from './AddGoodsForm.less'
 
 
 
-interface AddGoodsFromProps {
+interface AddGoodsFormProps {
 
 }
 
 
-const AddGoodsForm: React.FC<AddGoodsFromProps> = () => {
+const AddGoodsForm: React.FC<AddGoodsFormProps> = () => {
   const onFinish = values => {
     console.log(values)
   }
