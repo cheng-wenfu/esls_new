@@ -24,16 +24,17 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
     });
   }
 
-  function showModal() {
+  const showModal = () => {
     setVisible(true);
-  }
-  function handleModalOk() {
-    setVisible(false);
-  }
+  };
 
-  function handleModalCancel() {
+  const handleModalOk = () => {
     setVisible(false);
-  }
+  };
+
+  const handleModalCancel = () => {
+    setVisible(false);
+  };
 
   const pagination = {
     total: 200,
@@ -43,7 +44,7 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
       dispatch({
         type: 'goods/getGoodsData',
         payload: {
-          page: page -1
+          page: page - 1
         }
       });
     },
