@@ -4,7 +4,9 @@ import { DefaultSettings as SettingModelState } from '../../config/defaultSettin
 import { UserModelState } from './user';
 import { StateType } from './login';
 import { GoodsModelState } from './goods';
-import { TagsModelState } from './tags'
+import { TagsModelState } from './tags';
+import { StylesModelState } from './styles';
+import { ShopsModelState } from './shops';
 
 export {
   GlobalModelState,
@@ -12,6 +14,8 @@ export {
   UserModelState,
   GoodsModelState,
   TagsModelState,
+  StylesModelState,
+  ShopsModelState,
 };
 
 export interface Loading {
@@ -34,6 +38,8 @@ export interface ConnectState {
   login: StateType;
   goods: GoodsModelState;
   tags: TagsModelState;
+  styles: StylesModelState;
+  shops: ShopsModelState;
 }
 
 export interface Route extends MenuDataItem {
