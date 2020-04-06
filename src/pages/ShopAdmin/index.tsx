@@ -59,7 +59,7 @@ const ShopAdmin: React.FC<ShopAdminProps> = (props) => {
     <PageHeaderWrapper>
       <Row gutter={[8, 24]}>
         <Card title="总店信息">
-          <Table dataSource={shops.headShopData} columns={columns} />
+          <Table rowKey="id" dataSource={shops.headShopData} columns={columns} />
         </Card>
       </Row>
       <Row gutter={8}>
