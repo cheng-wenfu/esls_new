@@ -6,7 +6,7 @@ interface AddShopsFormProps {
 
 }
 
-const AddShopsForm: React.Fc<AddShopsFormProps> = () => {
+const AddShopsForm: React.FC<AddShopsFormProps> = () => {
   const onFinish = values => {
     console.log(values);
   }
