@@ -1,8 +1,15 @@
 import { Effect, Reducer } from 'umi';
 
-import { HomeStatisticData, UserOperationLogItem } from './userData';
+import { HomeStatisticData, UserOperationLogItem, UserDateItem } from './userData';
 
-import { queryCurrent, query as queryUsers, getHomeStatisticData, getUserOperationLogs } from '@/services/user';
+import {
+  queryCurrent,
+  query as queryUsers,
+
+  getHomeStatisticData,
+  getUserOperationLogs,
+  getUsersData,
+} from '@/services/user';
 
 
 export interface CurrentUser {
@@ -20,9 +27,10 @@ export interface CurrentUser {
 }
 
 export interface UserModelState {
-  homeStatisticData?: HomeStatisticData,
+  homeStatisticData?: HomeStatisticData;
   currentUser?: CurrentUser;
-  userOperationLogs?: UserOperationLogItem[],
+  userOperationLogs?: UserOperationLogItem[];
+  usersData?: UserDateItem[];
 }
 
 export interface UserModelType {
@@ -33,12 +41,14 @@ export interface UserModelType {
     fetchCurrent: Effect;
     getHomeStatisticData: Effect; //
     getUserOperationLogs: Effect; //
+    getUsersData: Effect;
   };
   reducers: {
     saveCurrentUser: Reducer<UserModelState>;
     changeNotifyCount: Reducer<UserModelState>;
     saveHomeStatisticData: Reducer<UserModelState>;
     saveUserOperationLogs: Reducer<UserModelState>;
+    saveUsersData: Reducer<UserModelState>
   };
 }
 
@@ -96,6 +106,15 @@ const UserModel: UserModelType = {
         type: 'saveUserOperationLogs',
         payload: response,
       })
+    },
+
+    *getUsersData({ payload }, { call, put }) {
+      const response = yield call(getUsersData, payload);
+      yield put({
+        type: 'saveUsersData',
+        payload: response,
+      })
+
     }
   },
 
@@ -134,6 +153,12 @@ const UserModel: UserModelType = {
       return {
         ...state,
         userOperationLogs: payload.data,
+      }
+    },
+    saveUsersData(state, { payload }) {
+      return {
+        ...state,
+        usersData: payload.data,
       }
     }
   },
