@@ -7,7 +7,7 @@ interface RoutersDataRequestParams extends RequestParams {
 }
 
 
-export async function getRoutersData({page, query = "", queryString = "",  count = 6}: GoodsDataRequestParams) {
+export async function getRoutersData({page, query = "", queryString = "",  count = 6}: RoutersDataRequestParams) {
   const url = `/server/api/routers/?query=${query}&queryString=${queryString}&page=${page}&count=${count}`;
   console.log(url)
   return request(url, {
