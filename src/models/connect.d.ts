@@ -7,7 +7,7 @@ import { GoodsModelState } from './goods';
 import { TagsModelState } from './tags';
 import { StylesModelState } from './styles';
 import { ShopsModelState } from './shops';
-import { RouterModelState } from './routers';
+import { RoutersModelState } from './routers';
 
 export {
   GlobalModelState,
@@ -17,7 +17,7 @@ export {
   TagsModelState,
   StylesModelState,
   ShopsModelState,
-  RouterModelState,
+  RoutersModelState,
 };
 
 export interface Loading {
@@ -42,7 +42,7 @@ export interface ConnectState {
   tags: TagsModelState;
   styles: StylesModelState;
   shops: ShopsModelState;
-  routers: RouterModelState;
+  routers: RoutersModelState;
 }
 
 export interface Route extends MenuDataItem {
