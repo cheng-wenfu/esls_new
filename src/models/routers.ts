@@ -4,30 +4,31 @@ import { RouterDataItem } from './routerData';
 
 import { getRoutersData } from '@/services/routers';
 
-export interface RouterModelState {
+export interface RoutersModelState {
   routersData: RouterDataItem[];
 }
 
-interface RouterMOdelType {
+interface RouterModelType {
   name: string;
-  state: RouterModelState;
-  effect: {
+  state: RoutersModelState;
+  effects: {
     getRoutersData: Effect;
   };
   reducers: {
-    saveRoutersData: Reducer<RouterModelState>;
-  }
+    saveRoutersData: Reducer<RoutersModelState>;
+  };
 }
 
 
-const Model: RouterMOdelType = {
+const Model: RouterModelType = {
   name: 'routers',
   state: {
     routersData: [],
   },
 
-  effect: {
+  effects: {
     *getRoutersData({ payload }, {call, put}) {
+      console.log('payload', payload)
       const response = yield call(getRoutersData, payload);
       yield put({
         type: 'saveRoutersData',
