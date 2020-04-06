@@ -121,6 +121,18 @@ export default defineConfig({
               component: './ShopAdmin'
             },
             {
+              name: 'routerAdmin',
+              icon: 'table',
+              path: '/routerAdmin',
+              component: './RouterAdmin'
+            },
+            {
+              name: 'UserAdmin',
+              icon: 'table',
+              path: '/userAdmin',
+              component: './UserAdmin',
+            },
+            {
               component: './404',
             },
           ],
