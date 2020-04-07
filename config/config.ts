@@ -103,15 +103,15 @@ export default defineConfig({
               component: './ChangePrice'
             },
             {
-              name: 'tagManage',
+              name: 'tagAdmin',
               icon: 'table',
-              path: '/tagManage',
+              path: '/tagAdmin',
               component: './TagManage',
             },
             {
-              name: 'styleMange',
+              name: 'styleAdmin',
               icon: 'table',
-              path: '/styleManage',
+              path: '/styleAdmin',
               component: './StyleManage',
             },
             {
@@ -127,7 +127,7 @@ export default defineConfig({
               component: './RouterAdmin'
             },
             {
-              name: 'UserAdmin',
+              name: 'userAdmin',
               icon: 'table',
               path: '/userAdmin',
               component: './UserAdmin',
