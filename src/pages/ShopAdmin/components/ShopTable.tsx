@@ -24,17 +24,10 @@ const ShopTable: React.FC<ShopTableProps> = ({ dispatch, shopsData }) => {
     })
   };
 
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleModalOk = () => {
+  const onAddShop = values => {
+    console.log("add shops: ", values)
     setVisible(false);
-  };
-
-  const handleModalCancel = () => {
-    setVisible(false);
-  };
+  }
 
   const pagination = {
     total: 50,
@@ -83,7 +76,7 @@ const ShopTable: React.FC<ShopTableProps> = ({ dispatch, shopsData }) => {
         title="分店信息"
         extra={
           <div className="buttonContainer">
-            <Button type="primary" onClick={showModal}>添加店铺</Button>
+            <Button type="primary" onClick={() => setVisible(true)}>添加店铺</Button>
             <Button type="primary" onClick={handleRefresh}>刷新</Button>
           </div>
         }
@@ -94,15 +87,7 @@ const ShopTable: React.FC<ShopTableProps> = ({ dispatch, shopsData }) => {
           columns={columns}
           pagination={pagination}
         />
-        <Modal
-          title="添加店铺"
-          visible={visible}
-          onOk={handleModalOk}
-          onCancel={handleModalCancel}
-          width={900}
-        >
-          <AddShopsForm />
-        </Modal>
+        <AddShopsForm visible={visible} onAddShop={onAddShop} onCancle={() => {setVisible(false)}} />
       </Card>
     </div>
   )

@@ -12,17 +12,10 @@ interface UsersTableProps {
 
 const UsersTable: React.FC<UsersTableProps> = ({dispatch, usersData}) => {
   const [visible, setVisible] = useState<boolean>(false);
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleModalOk = () => {
+  const onAddUser = values => {
+    console.log("user Value", values);
     setVisible(false);
-  };
-
-  const handleModalCancel = () => {
-    setVisible(false);
-  };
+  }
 
   const pagination = {
     total: 50,
@@ -80,7 +73,7 @@ const UsersTable: React.FC<UsersTableProps> = ({dispatch, usersData}) => {
       <Card
         title="用户列表"
         extra={
-          <Button type="primary" onClick={showModal}>添加用户</Button>
+          <Button type="primary" onClick={() => {setVisible(true)}}>添加用户</Button>
         }
       >
         <Table
@@ -89,15 +82,7 @@ const UsersTable: React.FC<UsersTableProps> = ({dispatch, usersData}) => {
           columns={columns}
           pagination={pagination}
         />
-        <Modal
-          title='添加用户'
-          visible={visible}
-          onOk={handleModalOk}
-          onCancel={handleModalCancel}
-          width={720}
-        >
-          <AddUserForm />
-        </Modal>
+          <AddUserForm visible={visible} onAddUser={onAddUser} onCancle={() => {setVisible(false)}} />
       </Card>
     </div>
   )

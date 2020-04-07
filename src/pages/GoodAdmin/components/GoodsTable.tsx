@@ -4,7 +4,9 @@ import { Dispatch } from 'umi';
 
 import AddGoodsForm from './AddGoodsFrom';
 
-import { GoodDataItem } from '@/models/goodData'
+import { GoodDataItem } from '@/models/goodData';
+
+import styles from './GoodsTable.less';
 
 interface GoodsTableProps {
   goodsData: Array<GoodDataItem> | undefined;
@@ -15,6 +17,15 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
   const [current, setCurrent] = useState(1);
   const [visible, setVisible] = useState(false);
 
+  const onAddGood = values => {
+    console.log('Received values of form: ', values);
+    setVisible(false);
+  }
+
+  const onCancel = () => {
+    setVisible(false)
+  }
+
   const handleRefresh = () => {
     dispatch({
       type: 'goods/getGoodsData',
@@ -24,17 +35,17 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
     });
   }
 
-  const showModal = () => {
-    setVisible(true);
-  };
+  // const showModal = () => {
+  //   setVisible(true);
+  // };
 
-  const handleModalOk = () => {
-    setVisible(false);
-  };
+  // const handleModalOk = () => {
+  //   setVisible(false);
+  // };
 
-  const handleModalCancel = () => {
-    setVisible(false);
-  };
+  // const handleModalCancel = () => {
+  //   setVisible(false);
+  // };
 
   const pagination = {
     total: 200,
@@ -107,10 +118,10 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
       <Card
         title="商品数据管理"
         extra={
-          <div className="buttonContainer">
-            <Button  type="primary"  onClick={handleRefresh}>刷新</Button>
-            <Button type="primary" >筛选预警商品</Button>
-            <Button  type="primary" onClick={showModal}>添加商品</Button>
+          <div className={styles.buttonContainer}>
+            <Button className={styles.operationButton}  type="primary"  onClick={handleRefresh}>刷新</Button>
+            <Button className={styles.operationButton} type="primary" >筛选预警商品</Button>
+            <Button className={styles.operationButton}  type="primary" onClick={() => {setVisible(true)}}>添加商品</Button>
           </div>
         }>
         <Table
@@ -120,15 +131,7 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
           pagination={pagination}
         />
       </Card>
-      <Modal
-        title="添加商品"
-        visible={visible}
-        onOk={handleModalOk}
-        onCancel={handleModalCancel}
-        width={900}
-      >
-        <AddGoodsForm />
-      </Modal>
+      <AddGoodsForm visible={visible} onAddGoods={onAddGood} onCancle={onCancel} />
     </div>
   );
 };
