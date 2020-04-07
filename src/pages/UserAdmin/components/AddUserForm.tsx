@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
-import { Form, Input, Row, Col } from 'antd';
+import React from 'react';
+import { Modal, Form, Input, Row, Col } from 'antd';
 
 
 interface AddUserFormProps {
-
+  visible: boolean;
+  onCancle: () => void;
+  onAddUser: (values: any) => void;
 }
 
-const AddUsersForm: React.FC<AddUserFormProps> = () => {
-  const onFinish = values => {
-    console.log(values);
-  }
-
+const AddUsersForm: React.FC<AddUserFormProps> = ({visible, onAddUser, onCancle}) => {
+  const [form] = Form.useForm();
   return (
-    <Form onFinish={onFinish} name="添加店铺">
+    <Modal
+    visible={visible}
+    title="添加用户"
+    okText="添加"
+    cancelText="取消"
+    onCancel={onCancle}
+    onOk={() => {
+      form
+        .validateFields()
+        .then(values => {
+          form.resetFields();
+          onAddUser(values);
+        })
+        .catch(info => {
+          console.log('Validate Failed:', info);
+        });
+    }}
+  >
+    <Form form={form} name="添加用户">
       <Form.Item
         name="name"
         label="用户名"
@@ -150,6 +167,7 @@ const AddUsersForm: React.FC<AddUserFormProps> = () => {
         <Input />
       </Form.Item>
     </Form >
+    </Modal>
   )
 }
 

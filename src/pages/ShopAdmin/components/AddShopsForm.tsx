@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
-import { Form, Input, Row, Col } from 'antd';
+import React from 'react';
+import { Modal, Input, Form, Row, Col } from 'antd';
 
 
 interface AddShopsFormProps {
-
+  visible: boolean;
+  onCancle: () => void;
+  onAddShop: (values: any) => void;
 }
 
-const AddShopsForm: React.FC<AddShopsFormProps> = () => {
-  const onFinish = values => {
-    console.log(values);
-  }
-
+const AddShopsForm: React.FC<AddShopsFormProps> = ({ visible, onAddShop, onCancle}) => {
+  const [form] = Form.useForm();
   return (
-    <Form onFinish={onFinish} name="添加店铺">
+    <Modal
+      visible={visible}
+      title="添加店铺"
+      okText="添加"
+      cancelText="取消"
+      onCancel={onCancle}
+      onOk={() => {
+        form
+          .validateFields()
+          .then(values => {
+            form.resetFields();
+            onAddShop(values);
+          })
+          .catch(info => {
+            console.log('Validate Failed:', info);
+          })
+      }}
+    >
+    <Form form={form} name="添加店铺">
       <Form.Item
         name="number"
         label="店铺编码"
@@ -78,6 +95,7 @@ const AddShopsForm: React.FC<AddShopsFormProps> = () => {
         <Input />
       </Form.Item>
     </Form >
+    </Modal>
   )
 }
 

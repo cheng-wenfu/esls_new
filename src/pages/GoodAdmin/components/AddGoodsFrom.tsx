@@ -1,24 +1,42 @@
-import React, { useState } from 'react';
-import { Form, Input, Row, Col } from 'antd';
+import React from 'react';
+import { Modal, Form, Input, Row, Col } from 'antd';
 
 import styles from './AddGoodsForm.less'
 
 
 
 interface AddGoodsFormProps {
-
+  visible: boolean;
+  onCancle: () => void;
+  onAddGood: (values: any) => void;
 }
 
 
-const AddGoodsForm: React.FC<AddGoodsFormProps> = () => {
-  const onFinish = values => {
-    console.log(values)
-  }
-
+const AddGoodsForm: React.FC<AddGoodsFormProps> = ({visible, onAddGood, onCancle}) => {
+  const [form] = Form.useForm();
   return (
+    <Modal
+      visible={visible}
+      title="添加商品"
+      okText="添加"
+      cancelText="取消"
+      onCancel={onCancle}
+      onOk={() => {
+        form
+          .validateFields()
+          .then(values => {
+            form.resetFields();
+            onAddGood(values);
+          })
+          .catch(info => {
+            console.log('Validate Failed:', info);
+          });
+      }}
+    >
+
     <Form
+      form={form}
       className={styles.addGoodsForm}
-      onFinish={onFinish}
       name="添加商品"
     >
       <Row gutter={8}>
@@ -59,7 +77,7 @@ const AddGoodsForm: React.FC<AddGoodsFormProps> = () => {
           </Form.Item>
         </Col>
       </Row>
-      <Row gutter={8}>
+      {/*<Row gutter={8}>
         <Col span={12}>
           <Form.Item
             className={styles.addGoodsFormItem}
@@ -458,8 +476,9 @@ const AddGoodsForm: React.FC<AddGoodsFormProps> = () => {
             <Input />
           </Form.Item>
         </Col>
-      </Row>
+          </Row>*/}
     </Form>
+    </Modal>
   )
 }
 
