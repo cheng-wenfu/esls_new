@@ -49,4 +49,11 @@ export default {
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
+  'menu.goodAdmin': '商品管理',
+  'menu.changePrice': '变价监控',
+  'menu.tagAdmin': '价签管理',
+  'menu.styleAdmin': '样式管理',
+  'menu.shopAdmin': '店铺管理',
+  'menu.routerAdmin': '路由器管理',
+  'menu.userAdmin': '用户管理',
 };
