@@ -36,6 +36,17 @@ export async function getUsersData({page, query = "", queryString = "",  count =
   })
 }
 
+/**
+ * 获取当前登录用户信息
+ */
+export async function getLoginUserInfo(id: number) {
+  const url = `/server/api/users/${id}`;
+  return request(url, {
+    method: 'GET'
+  })
+}
+
+
 
 
 
