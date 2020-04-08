@@ -56,3 +56,27 @@ export interface UserDateItem {
   roleList: string;
 }
 
+//登录用户信息
+export interface LoginUserInfo {
+  id?: number;
+  name?: string;
+  passwd?: string;
+  telephone?: string;
+  address?: string;
+  department?: string;
+  createTime?: string;
+  lastLoginTime?: string;
+  status?: number;
+  activateStatus?: number;
+  mail?: string;
+  avatarUrl?: string;
+  loginType?: string;
+  shopId?: number;
+  salt?: string;
+  isShopAdmin?: number;
+  realName?: string;
+  shopNameAndShopNumber?: string;
+  systemVersion?: {};
+  roleList?: string;
+}
+
