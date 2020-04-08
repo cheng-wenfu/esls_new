@@ -8,7 +8,7 @@ interface valueType {
 }
 
 interface HomeStatisticDataPieProps {
-  value: valueType[];
+  value: valueType[] | undefined;
   elementId: string;
   title?: string;
   description?: string;
