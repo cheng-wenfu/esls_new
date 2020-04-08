@@ -8,6 +8,8 @@ import { TagsModelState } from './tags';
 import { StylesModelState } from './styles';
 import { ShopsModelState } from './shops';
 import { RoutersModelState } from './routers';
+import { CycleJobModelState } from './cycleJob';
+import { LicenseBackupModelState } from './licence_backup'
 
 export {
   GlobalModelState,
@@ -18,6 +20,8 @@ export {
   StylesModelState,
   ShopsModelState,
   RoutersModelState,
+  CycleJobModelState,
+  LicenseBackupModelState,
 };
 
 export interface Loading {
@@ -43,6 +47,8 @@ export interface ConnectState {
   styles: StylesModelState;
   shops: ShopsModelState;
   routers: RoutersModelState;
+  cycleJob: CycleJobModelState;
+  liceseBackup: LicenseBackupModelState;
 }
 
 export interface Route extends MenuDataItem {
