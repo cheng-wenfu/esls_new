@@ -1,6 +1,11 @@
 import { Effect, Reducer } from 'umi';
 
-import { HomeStatisticData, UserOperationLogItem, UserDateItem } from './userData';
+import {
+  HomeStatisticData,
+  UserOperationLogItem,
+  UserDateItem,
+  LoginUserInfo
+} from './userData';
 
 import {
   queryCurrent,
@@ -9,6 +14,7 @@ import {
   getHomeStatisticData,
   getUserOperationLogs,
   getUsersData,
+  getLoginUserInfo,
 } from '@/services/user';
 
 
@@ -31,6 +37,7 @@ export interface UserModelState {
   currentUser?: CurrentUser;
   userOperationLogs?: UserOperationLogItem[];
   usersData?: UserDateItem[];
+  loginUserInfo?: LoginUserInfo;
 }
 
 export interface UserModelType {
@@ -42,13 +49,15 @@ export interface UserModelType {
     getHomeStatisticData: Effect; //
     getUserOperationLogs: Effect; //
     getUsersData: Effect;
+    getLoginUserInfo: Effect;
   };
   reducers: {
     saveCurrentUser: Reducer<UserModelState>;
     changeNotifyCount: Reducer<UserModelState>;
     saveHomeStatisticData: Reducer<UserModelState>;
     saveUserOperationLogs: Reducer<UserModelState>;
-    saveUsersData: Reducer<UserModelState>
+    saveUsersData: Reducer<UserModelState>;
+    saveLoginUserInfo: Reducer<UserModelState>;
   };
 }
 
@@ -72,7 +81,9 @@ const UserModel: UserModelType = {
       forbiddenRouterSize: 0,
       noIsWorkingRouterSize: 0,
     },
-    userOperationLogs: [{}]
+    userOperationLogs: [{}],
+    usersData: [],
+    loginUserInfo: {},
   },
 
   effects: {
@@ -114,7 +125,14 @@ const UserModel: UserModelType = {
         type: 'saveUsersData',
         payload: response,
       })
+    },
 
+    *getLoginUserInfo({ payload }, {call, put}) {
+      const response = yield call(getLoginUserInfo, payload);
+      yield put({
+        type: 'saveLoginUserInfo',
+        payload: response,
+      })
     }
   },
 
@@ -159,6 +177,12 @@ const UserModel: UserModelType = {
       return {
         ...state,
         usersData: payload.data,
+      }
+    },
+    saveLoginUserInfo(state, { payload }) {
+      return {
+        ...state,
+        loginUserInfo: payload.data,
       }
     }
   },
