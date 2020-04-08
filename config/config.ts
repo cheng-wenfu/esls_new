@@ -133,6 +133,18 @@ export default defineConfig({
               component: './UserAdmin',
             },
             {
+              name: 'licenseAndBackup',
+              icon: 'table',
+              path: '/license_and_backup',
+              component: './LicenseBackup',
+            },
+            {
+              name: 'systemSetting',
+              icon: 'table',
+              path: '/systemSetting',
+              component: './SystemSetting'
+            },
+            {
               component: './404',
             },
           ],
