@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dispatch } from 'umi';
-import { Card, Table, Button } from 'antd';
+import { Card, Table, Button, Switch } from 'antd';
 
 import { CycleJobDataItem } from '@/models/cycleJobData';
 import { Pagination } from 'antd';
@@ -11,7 +11,7 @@ interface CycleJobTableProps {
 }
 
 const CycleJobTable: React.FC<CycleJobTableProps> = ({dispatch, cycleJobData}) => {
-  const [current, setCurrent] = useState()
+  const [current, setCurrent] = useState(1)
   const pagination = {
     total: 100,
     current: current,
@@ -42,10 +42,16 @@ const CycleJobTable: React.FC<CycleJobTableProps> = ({dispatch, cycleJobData}) =
     {
       title: '状态',
       dataIndex: 'state',
+      render: state => {
+        return (state !== 1 ? <Switch /> : <Switch defaultChecked /> )
+      }
     },
     {
       title: '操作',
       dataIndex: 'oreation',
+      render: rowKey => {
+        return <Button type="danger">删除</Button>
+      }
     },
   ];
 

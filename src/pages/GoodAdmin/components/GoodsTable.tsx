@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Modal, Card } from 'antd';
+import { Table, Button, Card, Switch, Tag } from 'antd';
 import { Dispatch } from 'umi';
 
 import AddGoodsForm from './AddGoodsFrom';
@@ -85,6 +85,9 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
       title: '是否促销',
       dataIndex: 'isPromote',
       key: 'isPromote',
+      render: (isPromote : number) => {
+        return (isPromote === 0 ? <Switch /> : <Switch defaultChecked />)
+      }
     },
     {
       title: '店铺',
@@ -98,18 +101,27 @@ const GoodsTable: React.FC<GoodsTableProps> = ({ goodsData, dispatch }) => {
     },
     {
       title: '是否绑定',
-      dataIndex: 'status',
-      key: 'status',
+      dataIndex: 'tagIdList',
+      key: 'tagIdList',
+      render: tagIdList => {
+        return (tagIdList !== [] ? <Tag color="success">已绑</Tag> : <Tag color="error">未绑</Tag> )
+      }
     },
     {
       title: '更新状态',
       dataIndex: 'waitUpdate',
       key: 'waitUpdate',
+      render: waitUpdata => {
+        return (waitUpdata !== 0 ? <Tag color="success">已经更新</Tag> : <Tag color="error">等待更新</Tag>)
+      }
     },
     {
       title: '操作',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'operation',
+      key: 'opration',
+      render: rowkey => {
+        return <Button type="danger">删除</Button>
+      }
     },
   ];
 

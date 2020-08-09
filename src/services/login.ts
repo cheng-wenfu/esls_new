@@ -11,6 +11,7 @@ export async function fakeAccountLogin(params: LoginParamsType) {
   return request('/server/api/user/login', {
     method: 'POST',
     data: params,
+    getResponse: true,
   });
 }
 

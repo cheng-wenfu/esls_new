@@ -53,16 +53,6 @@ export default defineConfig({
           authority: ['admin', 'user'],
           routes: [
             {
-              path: '/',
-              redirect: '/welcome',
-            },
-            {
-              path: '/welcome',
-              name: 'welcome',
-              icon: 'smile',
-              component: './Welcome',
-            },
-            {
               path: '/admin',
               name: 'admin',
               icon: 'crown',
@@ -73,7 +63,7 @@ export default defineConfig({
                   path: '/admin/sub-page',
                   name: 'sub-page',
                   icon: 'smile',
-                  component: './Welcome',
+                  component: './Home',
                   authority: ['admin'],
                 },
               ],
@@ -84,12 +74,12 @@ export default defineConfig({
               path: '/home',
               component: './Home'
             },
-            {
-              name: 'list.table-list',
-              icon: 'table',
-              path: '/list',
-              component: './ListTableList',
-            },
+            // {
+            //   name: 'list.table-list',
+            //   icon: 'table',
+            //   path: '/list',
+            //   component: './ListTableList',
+            // },
             {
               name: 'goodAdmin',
               icon: 'table',
@@ -131,6 +121,12 @@ export default defineConfig({
               icon: 'table',
               path: '/userAdmin',
               component: './UserAdmin',
+            },
+            {
+              name: 'cycleJob',
+              icon: 'table',
+              path: '/cycleJob',
+              component: './CycleJob',
             },
             {
               name: 'licenseAndBackup',
@@ -207,7 +203,7 @@ export default defineConfig({
   //proxy: proxy[REACT_APP_ENV || 'dev'],
   proxy:{
     '/server/api/': {
-      target: 'http://47.107.139.6:8086',
+      target:  'http://47.107.139.6:8086', //'http://193.112.51.180:8086',
       changeOrigin: true,
       pathRewrite: { '^/server/api': '' }, // /server/api/currentUser -> /api/currentUser
     },

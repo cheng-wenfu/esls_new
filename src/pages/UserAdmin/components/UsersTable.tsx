@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Card, Table, Modal, Button } from 'antd';
+import {Card, Table, Modal, Button, Switch } from 'antd';
 import { Dispatch } from 'umi';
 
 import { UserDateItem } from '@/models/userData';
@@ -50,21 +50,31 @@ const UsersTable: React.FC<UsersTableProps> = ({dispatch, usersData}) => {
       title: '部门',
       dataIndex: 'department',
     },
-    {
-      title: '角色', //字段值是哪个
-      dataIndex: 'id'
-    },
+    // {
+    //   title: '角色', //字段值是哪个
+    //   dataIndex: 'id'
+    // },
     {
       title: '店铺',
       dataIndex: 'shopNameAndShopNumber',
     },
     {
       title: '状态',
-      dataIndex: 'activateStatus',
+      dataIndex: 'status',
+      render: status => {
+        return status === 0 ? <Switch /> : <Switch defaultChecked />
+      }
     },
     {
       title: '操作',
       dataIndex: 'Operations',
+      render: rowKey => {
+        return (
+        <div style={{display: "flex"}}>
+          <Button type="primary" style={{margin: "5px"}}>修改密码</Button>
+          <Button type="danger" style={{margin: "5px"}}>删除</Button>
+        </div>)
+      }
     }
   ]
 

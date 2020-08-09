@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect, Dispatch } from 'umi';
-import { Row } from 'antd';
+import { Row, Col } from 'antd';
 
 import { ConnectState, CycleJobModelState } from '@/models/connect';
 import CycleJobTable from './components/CycleJobsTable';
@@ -25,7 +25,10 @@ const CycleJob: React.FC<CycleJobProps> = (props) => {
   return (
     <PageHeaderWrapper>
       <Row gutter={[8,24]}>
-        <CycleJobTable cycleJobData={cycleJob.cycleJobsData} dispatch={dispatch} />
+        <Col span={24}>
+          <CycleJobTable cycleJobData={cycleJob.cycleJobsData} dispatch={dispatch} />
+        </Col>
+
       </Row>
     </PageHeaderWrapper>
   )

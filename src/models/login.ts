@@ -5,6 +5,7 @@ import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
 
+
 export interface StateType {
   status?: 'ok' | 'error';
   type?: string;
@@ -33,14 +34,20 @@ const Model: LoginModelType = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
+      console.log(response)
       yield put({
         type: 'changeLoginStatus',
-        payload: response,
+        payload: {
+          id: response.data.data.id,
+          status: 'ok',
+          type: 'account',
+          //currentAuthority TODO: 用户权限设置
+        },
       });
       // Login successfully
       // TODO: 自己的规则
       // 原先规则：if (response.status === 'ok')
-      if (response.code === 1) {
+      if (response.data.code === 1) {
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
@@ -77,6 +84,7 @@ const Model: LoginModelType = {
   reducers: {
     changeLoginStatus(state, { payload }) {
       setAuthority(payload.currentAuthority);
+      localStorage.setItem('currentId', payload.id)
       return {
         ...state,
         status: payload.status,

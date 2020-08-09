@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Card } from 'antd';
+import { Table, Button, Card, Tag } from 'antd';
 import { Dispatch } from 'umi';
 
 import { TagDataItem } from '@/models/tagData';
@@ -68,21 +68,37 @@ const TagsTable: React.FC<TagsTableProps> = ({ tagsData, dispatch }) => {
       title: '通讯状态',
       dataIndex: 'execTime',
       key: 'execTime',
+      render: execTime => {
+        return (execTime ? <Tag color="success">正常</Tag> : <Tag color="error">超时</Tag>)
+      }
     },
     {
       title: '启用状态',
       dataIndex: 'forbidState',
       key: 'forbidState',
+      render: forbidState => {
+        return forbidState === 1 ? <Tag color="success">启用</Tag> : <Tag color="error">禁用</Tag>
+      }
     },
     {
       title: '等待变价',
       dataIndex: 'waitUpdate',
       key: 'waitUpdate',
+      render: waitUpdata => {
+        return (waitUpdata !== 0 ? <Tag color="success">已经更新</Tag> : <Tag color="error">等待更新</Tag>)
+      }
     },
     {
         title: '操作',
-        dataIndex: 'name',
-        key: 'name',
+        dataIndex: 'operations',
+        key: 'operations',
+        render: () => {
+          return (
+            <div>
+              <Button type="primary">操作</Button>
+            </div>
+          )
+        }
     },
   ];
   return (

@@ -39,7 +39,9 @@ const TagManage: React.FC<TagManageProps> = (props) => {
   return (
     <PageHeaderWrapper>
       <Row gutter={[8, 24]}>
-        <TagsTable dispatch={dispatch} tagsData={tags.tagsData} />
+        <Col span={24}>
+          <TagsTable dispatch={dispatch} tagsData={tags.tagsData} />
+        </Col>
       </Row>
       <Row gutter={8}>
         <Col span={24}>

@@ -45,12 +45,32 @@ const errorHandler = (error: { response: Response }): Response => {
   return response;
 };
 
+const query = extend({
+  errorHandler, // 默认错误处理
+  credentials: 'include',
+  headers: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+});
+
+/**
+ * 全局 response 拦截器，获取 token 并存储。
+ */
+query.interceptors.response.use(async (response: Response) => {
+  if(response.headers.has('esls')) {
+    localStorage.setItem('esls', response.headers.get('esls') || "")
+  }
+  return response;
+})
+
 /**
  * 配置request请求时的默认参数
  */
-const request = extend({
-  errorHandler, // 默认错误处理
-  credentials: 'include', // 默认请求是否带上cookie
-});
-
+const request = (url, options:{} = {}) => query(url, {
+  ...options,
+  headers: {
+    ...options.headers,
+    'esls': localStorage.getItem('esls') || "",
+  }
+})
 export default request;

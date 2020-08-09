@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect, Dispatch } from 'umi';
-import { Row } from 'antd';
+import { Row, Col } from 'antd';
 import { ConnectState, GoodsModelState, TagsModelState } from '@/models/connect';
 
 import GoodsTable from './components/GoodsTable';
@@ -35,7 +35,10 @@ const GoodAdmin: React.FC<GoodAdminProps> = (props) => {
   return (
     <PageHeaderWrapper>
       <Row gutter={[8, 24]}>
-        <GoodsTable goodsData={goods.goodsData} dispatch={dispatch} />
+        <Col span={24}>
+          <GoodsTable goodsData={goods.goodsData} dispatch={dispatch} />
+        </Col>
+
       </Row>
       <Row gutter={8}>
         <TagsTable tagsData={tags.tagsData} dispatch={dispatch} />

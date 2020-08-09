@@ -21,12 +21,14 @@ const UserAdmin: React.FC<UserAdminProps> = (props) => {
         page: 0,
       }
     })
-  });
+  },[]);
 
   return (
     <PageHeaderWrapper>
       <Row gutter={[8, 24]}>
-        <UsersTable dispatch={dispatch} usersData={users.usersData} />
+        <Col span={24}>
+          <UsersTable dispatch={dispatch} usersData={users.usersData} />
+        </Col>
       </Row>
     </PageHeaderWrapper>
   )

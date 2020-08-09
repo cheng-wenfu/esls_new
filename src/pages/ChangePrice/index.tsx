@@ -76,6 +76,7 @@ const ChangePrice: React.FC<ChangePriceProps> = (props) => {
                 <Button
                   type="primary"
                   size="small"
+                  style={{marginLeft: "10px"}}
                   onClick={(e) => { requestTagsData({ query: "", queryString: "" }) }}>查看</Button>
               </Col>
               <Col span={8}>
@@ -83,6 +84,7 @@ const ChangePrice: React.FC<ChangePriceProps> = (props) => {
                 <Button
                   type="primary"
                   size="small"
+                  style={{marginLeft: "10px"}}
                   onClick={(e) => { requestTagsData({ query: "forbidState", queryString: 1 }) }}>查看</Button>
               </Col>
               <Col span={8}>
@@ -90,6 +92,7 @@ const ChangePrice: React.FC<ChangePriceProps> = (props) => {
                 <Button
                   type="primary"
                   size="small"
+                  style={{marginLeft: "10px"}}
                   onClick={(e) => { requestTagsData({ query: "forbidState", queryString: 0 }) }}>查看</Button>
               </Col>
             </Row>
@@ -99,11 +102,12 @@ const ChangePrice: React.FC<ChangePriceProps> = (props) => {
                 <Button
                   type="primary"
                   size="small"
+                  style={{marginLeft: "10px"}}
                   onClick={(e) => { requestTagsData({ query: "waitUpdate", queryString: 0 }) }}>查看</Button>
               </Col>
               <Col span={8}>
                 变价超时：{tags.tagStatisticData?.overTimeTagSize}
-                <Button type="primary" size="small" onClick={(e) => { requestOvertimeTagsData }}>查看</Button>
+                <Button type="primary" size="small" style={{marginLeft: "10px"}} onClick={(e) => { requestOvertimeTagsData }}>查看</Button>
               </Col>
               <Col span={8}>
                 成功率：{(tags.tagStatisticData?.waitUpdateTagSize - tags.tagStatisticData?.overTimeTagSize) / (tags.tagStatisticData?.waitUpdateTagSize)}%
@@ -114,7 +118,7 @@ const ChangePrice: React.FC<ChangePriceProps> = (props) => {
       </Row>
       <Row gutter={[8, 24]}>
         <Col span={24}>
-        <TagsTable dispatch={dispatch} tagsData={tags.tagsData} isRequestOvertime={isRequestOvertime} requestParams={requestParams} />
+          <TagsTable dispatch={dispatch} tagsData={tags.tagsData} isRequestOvertime={isRequestOvertime} requestParams={requestParams} />
         </Col>
       </Row>
     </PageHeaderWrapper>

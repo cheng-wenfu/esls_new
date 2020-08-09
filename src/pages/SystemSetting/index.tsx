@@ -7,6 +7,8 @@ import { DownOutlined } from '@ant-design/icons';
 
 import { ShopDataItem } from '@/models/shopData'
 
+import SettingCard from './components/SettingCard'
+
 
 
 
@@ -22,9 +24,7 @@ const SystemSetting: React.FC<SystemSettingProps> = (props) => {
   useEffect(() => {
     dispatch({
       type: 'user/getLoginUserInfo',
-      payload: {
-        id: 1 //TODO:用户ID
-      }
+      payload: 1
     });
     dispatch({
       type: 'shops/getShopsData',
@@ -34,28 +34,11 @@ const SystemSetting: React.FC<SystemSettingProps> = (props) => {
     })
   },[])
 
-  const menu = (shopsData: ShopDataItem[]) => {
-    return (
-      <Menu>
-        {
-          shopsData.map((value) => {
-            <Menu.Item key={value.id}>
-              {value.name}
-            </Menu.Item>
-          })
-        }
-      </Menu>
-    )
-  }
 
   return (
     <PageHeaderWrapper>
       <Row>
-        <Dropdown overlay={menu(shopsData)}>
-          <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-            Hover me <DownOutlined />
-          </a>
-        </Dropdown>,
+        <SettingCard dispatch={dispatch} shopsData={shopsData} />
       </Row>
     </PageHeaderWrapper >
   )

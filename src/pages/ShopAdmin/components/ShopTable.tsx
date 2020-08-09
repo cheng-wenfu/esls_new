@@ -66,7 +66,15 @@ const ShopTable: React.FC<ShopTableProps> = ({ dispatch, shopsData }) => {
     },
     {
       title: '路由器',  //TODO: 索引错误
-      dataIndex: 'type',
+      dataIndex: 'routers',
+      render: (routers) => {
+        let routerList = [];
+        routers.map(value => {
+          routerList.push(value?.barCode)
+        })
+        return routerList.toString()
+      },
+      ellipsis: true,
     }
   ]
 
@@ -76,8 +84,8 @@ const ShopTable: React.FC<ShopTableProps> = ({ dispatch, shopsData }) => {
         title="分店信息"
         extra={
           <div className="buttonContainer">
-            <Button type="primary" onClick={() => setVisible(true)}>添加店铺</Button>
-            <Button type="primary" onClick={handleRefresh}>刷新</Button>
+            <Button type="primary" onClick={() => setVisible(true)} style={{margin:"5px"}}>添加店铺</Button>
+            <Button type="primary" onClick={handleRefresh} style={{margin:"5px"}}>刷新</Button>
           </div>
         }
       >
@@ -85,7 +93,7 @@ const ShopTable: React.FC<ShopTableProps> = ({ dispatch, shopsData }) => {
           rowKey="id"
           dataSource={shopsData}
           columns={columns}
-          pagination={pagination}
+          pagination={false}
         />
         <AddShopsForm visible={visible} onAddShop={onAddShop} onCancle={() => {setVisible(false)}} />
       </Card>

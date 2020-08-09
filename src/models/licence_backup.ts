@@ -26,9 +26,10 @@ const Model: LicenseBackupModelType = {
   },
   effects: {
     *getLicenseData(_, { call, put }) {
-      const response = yield call(getLicenseData)
+      const response = yield call(getLicenseData);
+      console.log('license',response)
       yield put({
-        type: 'saveLicense',
+        type: 'saveLicenseData',
         payload: response,
       })
 

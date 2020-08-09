@@ -3,7 +3,12 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect, Dispatch } from 'umi';
 import { Row, Col } from 'antd';
 import { ConnectState, UserModelState } from '@/models/connect';
-import { HomeOutlined } from '@ant-design/icons'
+import { HomeOutlined, ShopOutlined,
+  UserOutlined,
+  TagOutlined,
+  ShoppingOutlined,
+  WifiOutlined,
+  SkinOutlined, } from '@ant-design/icons'
 
 
 import HomeStatisticDataCard from './components/HomeStatisticDataCard';
@@ -79,37 +84,37 @@ const Home: React.FC<HomeProps> = (props) => {
       <Row gutter={[8,24]}>
         <Col span={4}>
           <HomeStatisticDataCard
-            icon={<HomeOutlined />}
+            icon={<ShoppingOutlined />}
             title="商品数量"
             value={user.homeStatisticData.goodSize} />
         </Col>
         <Col span={4}>
           <HomeStatisticDataCard
-            icon={<HomeOutlined />}
+            icon={<TagOutlined />}
             title="价签数量"
             value={user.homeStatisticData.tagSize} />
         </Col>
         <Col span={4}>
           <HomeStatisticDataCard
-            icon={<HomeOutlined />}
+            icon={<SkinOutlined />}
             title="样式数量"
             value={user.homeStatisticData.styleSize} />
         </Col>
         <Col span={4}>
           <HomeStatisticDataCard
-            icon={<HomeOutlined />}
+            icon={<ShopOutlined />}
             title="店铺数量"
             value={user.homeStatisticData.shopSize} />
         </Col>
         <Col span={4}>
           <HomeStatisticDataCard
-            icon={<HomeOutlined />}
+            icon={<WifiOutlined />}
             title="路由器数量"
             value={user.homeStatisticData.routerSize} />
         </Col>
         <Col span={4}>
           <HomeStatisticDataCard
-            icon={<HomeOutlined />}
+            icon={<UserOutlined />}
             title="用户数量"
             value={user.homeStatisticData.userSize} />
         </Col>

@@ -56,4 +56,7 @@ export default {
   'menu.shopAdmin': '店铺管理',
   'menu.routerAdmin': '路由器管理',
   'menu.userAdmin': '用户管理',
+  'menu.licenseAndBackup': '证书与数据备份',
+  'menu.systemSetting': '系统参数设置',
+  'menu.cycleJob': '定期任务管理',
 };

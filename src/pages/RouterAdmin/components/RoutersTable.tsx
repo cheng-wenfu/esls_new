@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Table, Button } from 'antd';
+import { Card, Table, Button, Tag, Switch } from 'antd';
 import { Dispatch } from 'umi';
 
 import { RouterDataItem } from '@/models/routerData'
@@ -57,15 +57,24 @@ const RoutersTable: React.FC<RoutersTableProps> = ({dispatch, routersData}) => {
     },
     {
       title: '状态',
-      dataIndex: 'isWorking'
+      dataIndex: 'isWorking',
+      render: isWorking => {
+        return (isWorking !== 0 ? <Tag color="success">正常</Tag> : <Tag color="error">离线</Tag>)
+      }
     },
     {
       title: '是否启用', //这个可以通过按钮转换状态
       dataIndex: 'state',
+      render: (state : number) => {
+        return (state === 0 ? <Switch /> : <Switch defaultChecked />)
+      }
     },
     {
       title: '操作',
       dataIndex: 'operations',
+      render: rowkey => {
+        return <Button type="primary">操作</Button>
+      }
     }
   ];
 

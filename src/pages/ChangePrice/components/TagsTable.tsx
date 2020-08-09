@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Button, Card } from 'antd';
+import { Table, Button, Card, Tag } from 'antd';
 import { Dispatch } from 'umi';
 
 import { TagDataItem } from '@/models/tagData';
@@ -45,17 +45,17 @@ const TagsTable: React.FC<TagsTableProps> = ({ isRequestOvertime, requestParams,
       dataIndex: 'screenType',
       key: 'screenType',
     },
-    {
-      title: '店铺',
-      dataIndex: 'shopNameAndShopNumber',
-      key: 'shopNameAndShopNumber',
+    // {
+    //   title: '店铺',
+    //   dataIndex: 'shopNameAndShopNumber',
+    //   key: 'shopNameAndShopNumber',
 
-    },
-    {
-      title: 'AP/信道',
-      dataIndex: 'routerBarCodeAndChannelId',
-      key: 'routerBarCodeAndChannelId',
-    },
+    // },
+    // {
+    //   title: 'AP/信道',
+    //   dataIndex: 'routerBarCodeAndChannelId',
+    //   key: 'routerBarCodeAndChannelId',
+    // },
     {
       title: '商品条码/名称',
       dataIndex: 'goodBarCodeAndName',
@@ -80,21 +80,33 @@ const TagsTable: React.FC<TagsTableProps> = ({ isRequestOvertime, requestParams,
       title: '通讯状态',
       dataIndex: 'execTime',
       key: 'execTime',
-    },
-    {
-      title: '启用状态',
-      dataIndex: 'forbidState',
-      key: 'forbidState',
+      render: execTime => {
+        return (execTime ? <Tag color="success">正常</Tag> : <Tag color="error">超时</Tag>)
+      }
     },
     {
       title: '更新状态',
       dataIndex: 'waitUpdate',
       key: 'waitUpdate',
+      render: waitUpdate => {
+        return (waitUpdate !== 0 ? <Tag color="success">已经更新</Tag> : <Tag color="error">等待更新</Tag>)
+      }
+    },
+    {
+      title: '启用状态',
+      dataIndex: 'forbidState',
+      key: 'forbidState',
+      render: forbidState => {
+        return (forbidState === 1 ? <Tag color="success">启用</Tag> : <Tag color="error">禁用</Tag>)
+      }
     },
     {
         title: '操作',
         dataIndex: 'name',
         key: 'name',
+        render: rowkey => {
+          return <Button type="primary">变价</Button>
+        }
     },
   ];
   return (

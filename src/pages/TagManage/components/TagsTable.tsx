@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Table, Button } from 'antd';
+import { Card, Table, Button, Tag } from 'antd';
 import { Dispatch } from 'umi';
 
 import { TagDataItem } from '@/models/tagData';
@@ -53,12 +53,15 @@ const TagsTable: React.FC<TagsTableProps> = ({dispatch, tagsData}) => {
       title: '商品条码/名称',
       dataIndex: 'goodBarCodeAndName',
       key: 'goodBarCodeAndName',
+      render: goodBarCodeAndName => {
+        return goodBarCodeAndName || "无"
+      }
     },
-    {
-      title: '商品数量',
-      dataIndex: 'stock',
-      key: 'stock',
-    },
+    // {
+    //   title: '商品数量',
+    //   dataIndex: 'stock',
+    //   key: 'stock',
+    // },
     {
       title: 'AP/信道',
       dataIndex: 'routerBarCodeAndChannelId',
@@ -88,16 +91,26 @@ const TagsTable: React.FC<TagsTableProps> = ({dispatch, tagsData}) => {
       title: '通讯状态',
       dataIndex: 'execTime',
       key: 'execTime',
+      render: execTime => {
+        return (execTime !== "" ? <Tag color="success">正常</Tag> : <Tag color="error">超时</Tag>)
+      }
     },
     {
       title: '启用状态',
       dataIndex: 'forbidState',
       key: 'forbidState',
+      render: forbidState => {
+        return (forbidState === 1 ? <Tag color="success">启用</Tag> : <Tag color="error">禁用</Tag>)
+      }
+
     },
     {
         title: '操作',
         dataIndex: 'name',
         key: 'name',
+        render: rowKey => {
+          return <Button type="primary">操作</Button>
+        }
     },
   ];
 

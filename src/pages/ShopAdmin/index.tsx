@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect, Dispatch } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { Row, Card, Table } from 'antd';
+import { Row, Card, Table, Col } from 'antd';
 import { ConnectState, ShopsModelState } from '@/models/connect';
 
 import ShopTable from './components/ShopTable'
@@ -58,12 +58,16 @@ const ShopAdmin: React.FC<ShopAdminProps> = (props) => {
   return (
     <PageHeaderWrapper>
       <Row gutter={[8, 24]}>
-        <Card title="总店信息">
-          <Table rowKey="id" dataSource={shops.headShopData} columns={columns} />
-        </Card>
+        <Col span={24}>
+          <Card title="总店信息">
+            <Table rowKey="id" dataSource={shops.headShopData} columns={columns} pagination={false}/>
+          </Card>
+        </Col>
       </Row>
       <Row gutter={8}>
-        <ShopTable dispatch={dispatch} shopsData={shops.shopsData} />
+        <Col span={24}>
+          <ShopTable dispatch={dispatch} shopsData={shops.shopsData} />
+        </Col>
       </Row>
     </PageHeaderWrapper>
   )

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dispatch } from 'umi';
-import { Card, Table, Button } from 'antd';
+import { Card, Table, Button, Switch } from 'antd';
 
 import { StyleDataItem } from '@/models/styleData';
 
@@ -43,10 +43,20 @@ const StylesTable: React.FC<StylesTableProps> = ({ dispatch, stylesData }) => {
     {
       title: '促销',
       dataIndex: 'isPromote',
+      render: (isPromote : number) => {
+        return (isPromote === 0 ? <Switch /> : <Switch defaultChecked />)
+      }
     },
     {
       title: '操作',
       dataIndex:'opeations',
+      render: rowkey => {
+        return (
+        <div style={{display: "flex"}}>
+            <Button type="primary" style={{margin: "5px", display: "inline-block"}}>修改</Button>
+            <Button type="danger" style={{margin: "5px", display: "inline-block"}}>删除</Button>
+          </div>)
+      }
     },
   ]
 
@@ -56,8 +66,8 @@ const StylesTable: React.FC<StylesTableProps> = ({ dispatch, stylesData }) => {
       title='样式信息'
       extra={
         <div>
-          <Button type='primary' onClick={(e) => { }}>新建样式</Button>
-          <Button onClick={(e) => { }}>导入样式</Button>
+          <Button type='primary' onClick={(e) => { }} style={{margin: "5px"}}>新建样式</Button>
+          <Button onClick={(e) => { }} style={{margin: "5px"}}>导入样式</Button>
         </div>
       }
     >

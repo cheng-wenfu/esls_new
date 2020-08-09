@@ -48,7 +48,7 @@ export interface ConnectState {
   shops: ShopsModelState;
   routers: RoutersModelState;
   cycleJob: CycleJobModelState;
-  liceseBackup: LicenseBackupModelState;
+  licenseBackup: LicenseBackupModelState;
 }
 
 export interface Route extends MenuDataItem {

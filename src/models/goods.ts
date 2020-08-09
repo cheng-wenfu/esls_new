@@ -35,7 +35,7 @@ const Model: GoodsModelType = {
       stock: "",
       isPromote: 0,
       shopNumber: "",
-      tagList: [],
+      tagIdList: [],
     }]
   },
 

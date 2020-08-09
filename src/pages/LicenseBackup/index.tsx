@@ -39,7 +39,7 @@ const LicenseBackup: React.FC<LicenseBackupProps> = (props) => {
               <FileUpload action={dataAction} />
             </TabPane>
             <TabPane tab="查看证书" key="3">
-              <Row>
+              <Row gutter={8}>
                 <Col span={8}>
                   证书信息
                 </Col>
@@ -71,4 +71,8 @@ const LicenseBackup: React.FC<LicenseBackupProps> = (props) => {
     </PageHeaderWrapper>
   )
 }
+
+export default connect(({ licenseBackup }: ConnectState) => ({
+  licenseBackup:licenseBackup,
+}))(LicenseBackup);
 

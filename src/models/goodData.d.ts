@@ -1,3 +1,4 @@
+
 //单件商品数据类型
 export interface GoodDataItem {
   id: number;  //商品ID
@@ -33,7 +34,7 @@ export interface GoodDataItem {
   rfu02?: string;
   rfus01?: string;
   rfus02?: string;
-  tagList: Array<number>;  //对应价签ID表, 为空表示未绑定
+  tagIdList?: Array<number>;  //对应价签ID表, 为空表示未绑定
 }
 
 

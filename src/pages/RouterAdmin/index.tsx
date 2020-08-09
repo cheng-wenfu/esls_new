@@ -37,10 +37,14 @@ const RouterAdmin: React.FC<RouterAdminProps> = (props) => {
   return (
     <PageHeaderWrapper>
       <Row gutter={[8, 24]}>
-        <RoutersTable dispatch={dispatch} routersData={routers.routersData} />
+        <Col span={24}>
+          <RoutersTable dispatch={dispatch} routersData={routers.routersData} />
+        </Col>
       </Row>
       <Row gutter={8}>
-        <TagsTable tagsData={tags.tagsData} dispatch={dispatch} />
+        <Col span={24}>
+          <TagsTable tagsData={tags.tagsData} dispatch={dispatch} />
+        </Col>
       </Row>
     </PageHeaderWrapper>
   )

@@ -15,7 +15,7 @@ interface HomeStatisticDataCardProps {
 
 const HomeStatisticDataCard: React.FC<HomeStatisticDataCardProps>  = ({icon, title, value}) => {
     return (
-      <Card className={styles.dataCard}>
+      <Card className={styles.dataCard} bodyStyle={{padding: "10px"}}>
         <div className={styles.iconWarp}>
           {icon}
         </div>
